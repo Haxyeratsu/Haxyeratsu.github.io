@@ -2,8 +2,11 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saggio sul C++ | Progetto scolastico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Presentazione | C++ – Il linguaggio del compromesso</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,192 +15,325 @@
         }
 
         body {
-            background-color: #f5f7fb;
-            font-family: 'Segoe UI', 'Roboto', 'Georgia', serif;
-            line-height: 1.6;
-            color: #1e293b;
-            padding: 2rem 1rem;
+            font-family: 'Inter', sans-serif;
+            background: #0b1120;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* decorazione gradiente di sfondo */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.08), transparent 70%);
+            pointer-events: none;
+            z-index: -2;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            padding: 2rem 2rem 3rem;
+            padding: 2rem 1.5rem 4rem;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #0f172a;
-            border-left: 6px solid #3b82f6;
-            padding-left: 1.2rem;
+        /* sezioni = slide */
+        .slide {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+
+        .slide:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.6);
+            box-shadow: 0 30px 45px -12px rgba(0,0,0,0.6);
+        }
+
+        /* titolo principale eroe */
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .sub {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-top: 0.8rem;
+        }
+
+        .badge-icon {
+            display: inline-flex;
+            background: #1e293b;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            gap: 0.5rem;
             margin-bottom: 1rem;
-            margin-top: 0;
-        }
-
-        .meta {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            color: #475569;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 1rem;
-        }
-
-        .desc-box {
-            background-color: #f1f5f9;
-            border-left: 4px solid #3b82f6;
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
-            margin-bottom: 2.5rem;
-            font-style: normal;
-            font-size: 0.95rem;
-            color: #1e293b;
-        }
-
-        .desc-box strong {
-            color: #0f172a;
+            color: #60a5fa;
         }
 
         h2 {
-            font-size: 1.6rem;
-            margin-top: 2rem;
+            font-size: 1.9rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            font-weight: 600;
-            color: #0f172a;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1rem;
+        }
+
+        h2 i {
+            color: #3b82f6;
+            font-size: 1.8rem;
         }
 
         h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #334155;
             font-weight: 600;
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem;
+            color: #cbd5e1;
         }
 
-        p {
-            margin-bottom: 1rem;
+        .essay-text {
+            font-size: 1.02rem;
+            line-height: 1.65;
+            color: #e2e8f0;
             text-align: justify;
         }
 
-        .essay p:first-of-type {
-            margin-top: 0;
+        .essay-text p {
+            margin-bottom: 1rem;
         }
 
-        .code-block {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            padding: 1rem 1.5rem;
-            border-radius: 16px;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
+        .img-float {
+            display: flex;
+            justify-content: center;
             margin: 1.5rem 0;
-            box-shadow: inset 0 0 0 1px #334155;
         }
 
-        .code-block pre {
-            margin: 0;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: inherit;
+        .img-card {
+            background: #0f172a;
+            border-radius: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border: 1px solid #334155;
+            backdrop-filter: blur(4px);
         }
 
-        .note {
-            background-color: #fef9c3;
-            border-left: 4px solid #eab308;
-            padding: 0.8rem 1.2rem;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
+        .img-card i {
+            font-size: 2.5rem;
+            color: #3b82f6;
         }
 
-        .button-run {
-            display: inline-block;
-            background-color: #3b82f6;
-            color: white;
-            padding: 0.5rem 1.2rem;
+        .timeline {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 1.8rem 0;
+        }
+        .timeline-node {
+            background: #1e293b;
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            font-weight: 600;
+            border-top: 3px solid #3b82f6;
+        }
+
+        .code-window {
+            background: #010409;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            border: 1px solid #2d3748;
+        }
+        .code-header {
+            background: #161b22;
+            padding: 0.6rem 1rem;
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid #2d3748;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+        }
+        .code-dot.yellow { background: #ffbd2e; }
+        .code-dot.green { background: #27c93f; }
+        .code-content {
+            padding: 1.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            color: #c9d1d9;
+        }
+
+        .button-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            border: 1.5px solid #3b82f6;
+            padding: 0.6rem 1.2rem;
             border-radius: 40px;
-            text-decoration: none;
+            color: #93c5fd;
             font-weight: 500;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            transition: background 0.2s;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-top: 0.8rem;
         }
-
-        .button-run:hover {
-            background-color: #2563eb;
+        .button-outline:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
         }
 
         footer {
-            margin-top: 3rem;
             text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
             font-size: 0.8rem;
-            color: #64748b;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 2rem;
+            border-top: 1px solid #1e293b;
+            color: #5b6e8c;
         }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 1.2rem;
-            }
-            h1 {
-                font-size: 1.7rem;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.2rem; }
+            .container { padding: 1.2rem; }
+            .slide { padding: 1.2rem; }
+            h2 { font-size: 1.5rem; }
         }
+        i.fa, i.far, i.fas { margin-right: 6px; }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>📘 Un linguaggio nato da un compromesso: l'ascesa del C++</h1>
-    <div class="meta">
-        <span>📅 Progetto scolastico – Anno 2026</span>
-        <span>✍️ Saggio originale in italiano</span>
-        <span>💻 + piccola implementazione C++</span>
+    <!-- SLIDE INTRO (hero) -->
+    <div class="slide hero">
+        <div class="badge-icon"><i class="fas fa-microchip"></i> 1979 – oggi</div>
+        <h1>Un linguaggio nato da un compromesso:<br> l'ascesa del C++</h1>
+        <div class="sub"><i class="fas fa-code"></i> Saggio + dimostrazione pratica</div>
+        <div class="img-float">
+            <div class="img-card">
+                <i class="fas fa-laptop-code"></i>
+                <span>Bjarne Stroustrup · Bell Labs</span>
+                <i class="fas fa-arrow-right"></i>
+                <i class="fab fa-cuttlefish"></i><span style="font-weight:800">++</span>
+            </div>
+        </div>
     </div>
 
-    <!-- breve descrizione come richiesto (registro abbassato e corta) -->
-    <div class="desc-box">
-        <strong>📌 Descrizione</strong><br>
-        Ho scritto questo saggio sul C++ cercando di renderlo interessante e non noioso. Ho evitato ripetizioni e l'ho diviso in tre parti come una piccola storia. Parla dei compromessi che hanno reso famoso il linguaggio. Spero piaccia al professore.
+    <!-- descrizione breve (registro semplice) -->
+    <div class="slide">
+        <h2><i class="fas fa-feather-alt"></i> Una nota</h2>
+        <div class="essay-text">
+            <p>✏️ <strong>Descrizione</strong> — Ho scritto questo saggio sul C++ cercando di renderlo interessante e non noioso. Ho evitato ripetizioni e l'ho diviso in tre parti come una piccola storia. Parla dei compromessi che hanno reso famoso il linguaggio. Spero piaccia al professore.</p>
+        </div>
+        <div class="img-float">
+            <i class="fas fa-quote-left" style="color:#3b82f6; opacity:0.6;"></i>
+            <span style="margin-left:8px;">“C++ : migliorare C senza rinnegarlo”</span>
+        </div>
     </div>
 
-    <!-- SAGGIO COMPLETO (versione migliorata, senza ripetizioni) -->
-    <div class="essay">
-        <p>Nel 1979, nei laboratori dei Bell Telephone, un ingegnere danese di nome Bjarne Stroustrup cominciò a lavorare su un problema che all'epoca sembrava irrisolvibile: come scrivere programmi complessi senza rinunciare alla velocità del linguaggio C? La sua risposta non fu un'opera perfetta, ma un compromesso pragmatico destinato a diventare uno dei pilastri dell'informatica moderna. Questo saggio ripercorre la nascita e l'evoluzione di quel linguaggio, esplorandone le scelte audaci e le conseguenze ancora visibili oggi.</p>
-
-        <h3>▸ Primo movimento: i limiti del C</h3>
-        <p>Alla fine degli anni Settanta, il linguaggio C dominava già la scena tecnica. Con esso erano stati scritti il sistema operativo Unix e gran parte degli strumenti di sviluppo dell'epoca. Tuttavia, quando i progetti superavano alcune migliaia di righe, gestire la complessità diventava un'impresa ardua. Stroustrup, impegnato in una simulazione di reti telefoniche, sentiva il bisogno di organizzare i dati e le operazioni in unità logiche più naturali, simili a quelle offerte dal linguaggio Simula (uno dei primi a introdurre il concetto di "classi" e "oggetti"). La soluzione che immaginò fu radicale: invece di creare un nuovo linguaggio da zero, avrebbe aggiunto quelle caratteristiche a C, preservandone l'efficienza.</p>
-
-        <h3>▸ Secondo movimento: la scelta del nome e della filosofia</h3>
-        <p>Nel 1983, il progetto abbandonò il nome provvisorio "C with Classes" per adottare quello che conosciamo oggi. Il nuovo nome è già una dichiarazione di intenti: in C, l'operatore <code>++</code> incrementa una variabile di una unità. Chiamare il linguaggio "C++" significa quindi "andare un passo oltre C", migliorarlo senza rinnegarlo. A differenza di altri linguaggi nati in ambito accademico, questo non cercava la purezza teorica. Mantenne deliberatamente caratteristiche "pericolose" del C, come i puntatori e la gestione manuale della memoria, accanto alle novità del paradigma a oggetti (ereditarietà, polimorfismo, incapsulamento). Molti critici lo giudicarono ibrido e disordinato. Invece, proprio quella natura duale permise a milioni di programmatori di adottarlo gradualmente, senza riscrivere decenni di codice esistente.</p>
-
-        <h3>▸ Terzo movimento: l'apogeo e le critiche</h3>
-        <p>Negli anni Novanta e Duemila, non c'era ambito informatico che non fosse toccato da questo strumento. Motori grafici di videogiochi (Unreal Engine), sistemi operativi (parti di Windows, macOS, Linux), browser web (Chrome, Firefox) e persino software per la finanza ad alta frequenza – tutto poggiava su fondamenta scritte con questo linguaggio. Tuttavia, la sua stessa flessibilità si trasformò in un'arma a doppio taglio. La sintassi ricca di sottigliezze permetteva di scrivere codice estremamente efficiente, ma anche di commettere errori sottili e difficili da individuare. Con l'avvento di Java (1995) e poi di Python, molti sviluppatori iniziarono a preferire ambienti più sicuri e meno ostici per i principianti. Eppure, a differenza di altri linguaggi spariti nel dimenticatoio, questo non morì mai. Continua a evolversi con nuovi standard (2011, 2017, 2020, 2023) che aggiungono funzionalità moderne senza mai rompere il codice scritto trent'anni prima.</p>
-
-        <h3>◈ Conclusione</h3>
-        <p>La vicenda di questo linguaggio insegna una lezione controintuitiva: non sempre la soluzione più elegante sulla carta è quella che vince nel mondo reale. La sua forza non è mai stata la bellezza teorica, ma la capacità di convivere con il passato e con l'imperfezione. Oggi, quando avviamo un'applicazione, giochiamo a un videogioco o apriamo una pagina web, frammenti silenziosi di quel codice lavorano sotto la superficie. A mio parere, non è il linguaggio più facile da imparare, né il più piacevole da leggere. Ma rappresenta una verità profonda del mestiere del programmatore: la compatibilità con il vecchio codice vale più di mille nuove funzionalità. E forse, anche fuori dall'informatica, migliorare ciò che già esiste è più saggio che ricominciare sempre da zero.</p>
+    <!-- SAGGIO: movimento 1 -->
+    <div class="slide">
+        <h2><i class="fas fa-history"></i> Primo movimento — i limiti del C</h2>
+        <div class="essay-text">
+            <p>Nel 1979, nei laboratori Bell Telephone, un ingegnere danese di nome Bjarne Stroustrup cominciò a lavorare su un problema che all'epoca sembrava irrisolvibile: come scrivere programmi complessi senza rinunciare alla velocità del linguaggio C? La sua risposta non fu un'opera perfetta, ma un compromesso pragmatico destinato a diventare uno dei pilastri dell'informatica moderna.</p>
+            <p>Alla fine degli anni Settanta, il C dominava già la scena tecnica (Unix, strumenti di sviluppo). Ma con progetti più grandi, gestire la complessità diventava arduo. Stroustrup, impegnato in simulazioni di reti telefoniche, sognava l'organizzazione di Simula (classi e oggetti) senza perdere l'efficienza del C. La soluzione? Aggiungere astrazioni a C, non riscrivere tutto.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-node"><i class="fas fa-calendar-alt"></i> 1979<br>C with Classes</div>
+            <div class="timeline-node"><i class="fas fa-code-branch"></i> 1983<br>Nome C++</div>
+            <div class="timeline-node"><i class="fas fa-globe"></i> 1985<br>Primo libro</div>
+        </div>
     </div>
 
-    <!-- SEZIONE CODICE C++ -->
-    <h2>🧩 Piccolo programma in C++</h2>
-    <p>Per accompagnare il saggio, ecco un semplice programma interattivo che chiede nome, anno di nascita e preferenza per il C++. Mostra input/output, variabili e una condizione.</p>
+    <!-- movimento 2 -->
+    <div class="slide">
+        <h2><i class="fas fa-tag"></i> Secondo movimento — nome e filosofia</h2>
+        <div class="essay-text">
+            <p>Nel 1983 il progetto abbandonò “C with Classes” per diventare <strong>C++</strong>. L'operatore <code>++</code> incrementa di 1 → significa “andare un passo oltre C”, migliorarlo senza rinnegarlo. A differenza di linguaggi accademici “puri”, C++ mantenne caratteristiche ritenute pericolose (puntatori, memoria manuale) affiancandole a classi, ereditarietà e polimorfismo. I critici lo chiamarono ibrido disordinato, ma proprio quella dualità permise un'adozione graduale da parte di milioni di programmatori.</p>
+        </div>
+        <div class="img-float">
+            <div class="img-card">
+                <i class="fas fa-brain"></i> <span>Pragmatismo > purezza</span>
+                <i class="fas fa-balance-scale"></i>
+            </div>
+        </div>
+    </div>
 
-    <div class="code-block">
-        <pre>#include &lt;iostream&gt;
+    <!-- movimento 3 -->
+    <div class="slide">
+        <h2><i class="fas fa-chart-line"></i> Terzo movimento — apogeo e critiche</h2>
+        <div class="essay-text">
+            <p>Anni '90 e 2000: motori di videogiochi (Unreal), sistemi operativi (Windows, macOS, Linux), browser (Chrome, Firefox), finanza ad alta frequenza → tutto scritto in C++. Tuttavia la flessibilità diventò un'arma a doppio taglio: sintassi sottile permetteva codice efficiente ma anche errori subdoli. Con Java (1995) e Python molti scelsero ambienti più sicuri. Eppure C++ non morì: nuovi standard (2011, 2017, 2020, 2023) aggiungono funzionalità moderne senza rompere il codice di decenni fa.</p>
+        </div>
+        <div class="code-window" style="margin-top:1rem; background:#0a0c10;">
+            <div class="code-header"><span class="code-dot"></span><span class="code-dot yellow"></span><span class="code-dot green"></span><span style="margin-left:8px;">C++ still alive</span></div>
+            <div class="code-content">
+                // standard C++20: concepts, ranges, coroutines<br>
+                auto result = std::ranges::sort(std::vector{3,1,4,1,5});<br>
+                std::cout << "C++ evolves, legacy remains.\n";
+            </div>
+        </div>
+    </div>
+
+    <!-- Conclusione -->
+    <div class="slide">
+        <h2><i class="fas fa-gem"></i> Conclusione — la lezione del compromesso</h2>
+        <div class="essay-text">
+            <p>La forza del C++ non è mai stata la bellezza teorica, ma la capacità di convivere con il passato e con l'imperfezione. Oggi, dietro app, videogiochi e browser, frammenti silenziosi di quel codice lavorano sotto la superficie. Non è il linguaggio più facile, né il più elegante, ma incarna una verità: migliorare ciò che già esiste è più saggio che ricominciare da zero.</p>
+        </div>
+        <div class="img-float">
+            <i class="fas fa-quote-right fa-2x" style="color:#3b82f6;"></i>
+            <p style="margin-left:1rem; font-style:italic;">“Compatibilità con il vecchio codice vale più di mille nuove funzionalità.”</p>
+        </div>
+    </div>
+
+    <!-- PARTE PRATICA: programma C++ -->
+    <div class="slide">
+        <h2><i class="fas fa-terminal"></i> Piccolo programma in C++</h2>
+        <div class="essay-text">
+            <p>Ecco un semplice programma interattivo che chiede nome, anno e preferenza per il C++. Mostra input/output, variabili e una condizione <code>if</code>.</p>
+        </div>
+        <div class="code-window">
+            <div class="code-header"><span class="code-dot"></span><span class="code-dot yellow"></span><span class="code-dot green"></span><span style="margin-left:8px;">programma_demo.cpp</span></div>
+            <div class="code-content">
+<pre>#include &lt;iostream&gt;
 #include &lt;string&gt;
 using namespace std;
 
@@ -222,40 +358,36 @@ int main() {
     else
         cout &lt;&lt; "Peccato! Forse dopo questo programma cambierai idea.\n";
 
-    int eta = 2026 - anno;  // anno corrente 2026
+    int eta = 2026 - anno;
     cout &lt;&lt; "Hai " &lt;&lt; eta &lt;&lt; " anni. ";
     cout &lt;&lt; "Il C++ è nato nel 1983, quindi è più grande di te!\n";
 
     cout &lt;&lt; "Grazie per aver eseguito il programma.\n";
     return 0;
 }</pre>
-    </div>
-
-    <p>📌 <strong>Come eseguirlo?</strong> Puoi compilare il codice con <code>g++ programma.cpp -o programma</code> (Linux/Mac) oppure usare un compilatore online.</p>
-    <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" class="button-run">▶ Prova online (apre compilatore OnlineGDB)</a>
-
-    <!-- versione alternativa ancora più semplice -->
-    <h3>📟 Versione minimale (solo output)</h3>
-    <div class="code-block">
-        <pre>#include &lt;iostream&gt;
+            </div>
+        </div>
+        <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank" class="button-outline"><i class="fas fa-play"></i> Prova online (compilatore)</a>
+        <div class="essay-text" style="margin-top:1rem;">
+            <p><i class="fas fa-microphone-alt"></i> Oppure versione minimal (solo output)</p>
+        </div>
+        <div class="code-window">
+            <div class="code-content">
+<pre>#include &lt;iostream&gt;
 using namespace std;
-
 int main() {
     cout &lt;&lt; "IL MIO SAGGIO SUL C++ IN NUMERI\n";
-    cout &lt;&lt; "Anno di nascita: 1983\n";
-    cout &lt;&lt; "Creatore: Bjarne Stroustrup\n";
+    cout &lt;&lt; "Anno di nascita: 1983\nCreatore: Bjarne Stroustrup\n";
     cout &lt;&lt; "Filosofia: \"migliorare C senza rinnegarlo\"\n";
-    cout &lt;&lt; "Messaggio: a volte i compromessi vincono.\n";
     return 0;
 }</pre>
+            </div>
+        </div>
     </div>
 
-    <div class="note">
-        💡 <strong>Nota scolastica:</strong> Entrambi i programmi sono stati testati con compilatori moderni (C++11 e successivi). Il codice è commentato in italiano ed è adatto a una dimostrazione pratica del linguaggio.
-    </div>
-
+    <!-- footer senza "esame" -->
     <footer>
-        Progetto realizzato per l’esame di informatica / italiano tecnico · Saggio e codice sono originali · Licenza libera per uso didattico.
+        <i class="fas fa-cuttlefish"></i><i class="fas fa-plus"></i><i class="fas fa-plus"></i> · Progetto scolastico · Saggio e codice originali · Liberamente ispirato alla storia del C++ · 2026
     </footer>
 </div>
 </body>
